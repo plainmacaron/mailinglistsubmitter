@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        
+        <link rel="stylesheet" type="text/css" href="css/demo.css">
+        <link rel="stylesheet" type="text/css" href="css/plainmacaron/jquery.plainmacaron.mailinglistsubmitter.css">
+
+        <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/plainmacaron/jquery.plainmacaron.mailinglistsubmitter.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("#submitter").mailinglistsubmitter({
+                    formAction: "php/join.php",
+                    formSubmitResultFontFamily: null,
+                    imagePath: "png/Mailing-List-Envelope.png",
+                    inputFontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif",
+                    joinButtonFontFamily: null,
+                    joinButtonFontSize: "0.745em",
+                    labelFontFamily: null,
+                    noticeFontFamily: null
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#first-display-link").click(function() {
+                    var link = $(this);
+
+                    if(!link.hasClass("current")) {
+                        link.addClass("current");
+                    }
+
+                    if($("#second-display-link").hasClass("current")) {
+                        $("#second-display-link").removeClass("current");
+                    }
+
+                    var displayValueString = link.text();
+                    var displayStyleValue = parseInt(displayValueString.trim(), 10);
+
+                    $("#submitter").mailinglistsubmitter("option", "displayStyle", displayStyleValue);
+                });
+            });
+        </script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $("#second-display-link").click(function() {
+                    var link = $(this);
+
+                    if(!link.hasClass("current")) {
+                        link.addClass("current");
+                    }
+
+                    if($("#first-display-link").hasClass("current")) {
+                        $("#first-display-link").removeClass("current");
+                    }
+
+                    var displayValueString = link.text();
+                    var displayStyleValue = parseInt(displayValueString.trim(), 10);
+
+                    $("#submitter").mailinglistsubmitter("option", "displayStyle", displayStyleValue);
+                });
+            });
+        </script>
+
+        <title>Plain Macaron - mailinglistsubmitter</title>
+    </head>
+    <body>
+        <article>
+            <header>
+                <h1>mailinglistsubmitter</h1>
+                <p>
+                    <small>Published: <time>2015-09-23</time></small>
+                </p>
+            </header>
+            <p>
+                Try mailinglistsubmitter. Choose either display style <a id="first-display-link" href="#submitter">1</a> or display style 
+                <a id="second-display-link" class="current" href="#submitter">2</a>.
+            </p>
+            <div id="submitter"></div>
+            <footer>
+                <p id="fine-print">
+                    <small>
+                        Copyright &copy; 2015 <a href="http://plainmacaron.com/">Plain Macaron</a>. All Rights Reserved.
+                    </small>
+                </p>
+            </footer>
+        </article>
+    </body>
+</html>
