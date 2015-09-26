@@ -1,0 +1,33 @@
+{
+  "name": "mailinglistsubmitter",
+  "version": "1.0.0",
+  "description": "This customizable jQuery plug-in allows a visitor to easily join a mailing list.",
+  "main": "js/plainmacaron/jquery.plainmacaron.mailinglistsubmitter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plainmacaron/mailinglistsubmitter.git"
+  },
+  "keywords": [
+    "jquery-plugin",
+    "ecosystem:jquery",
+    "jquery",
+    "jquery-ui",
+    "widget",
+    "mail",
+    "mailing",
+    "email"
+  ],
+  "author": "Ryan E. Anderson <ryan@plainmacaron.com> (http://plainmacaron.com/)",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/plainmacaron/mailinglistsubmitter/issues"
+  },
+  "homepage": "https://github.com/plainmacaron/mailinglistsubmitter#readme",
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "jquery-ui": "^1.10.5"
+  }
+}
