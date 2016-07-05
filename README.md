@@ -22,7 +22,7 @@ Mailinglistsubmitter can be downloaded from the [plainmacaron site] and [GitHub]
 
 ### Version
 
-1.0.0
+1.0.1
 
 ---
 
