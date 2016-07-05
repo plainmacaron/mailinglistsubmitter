@@ -1,9 +1,9 @@
 /*!
- * jQuery Mailinglistsubmitter plug-in v1.0.0 - 2015-09-22T07:08Z
+ * jQuery Mailinglistsubmitter plug-in v1.0.1 - 2015-07-05T05:52Z
  * http://PlainMacaron.com/Controls/, http://PlainMacaron.com/Download/
  *
  * This customizable jQuery plug-in allows a visitor to easily join a mailing list.
- * Copyright (C) 2015 Plain Macaron
+ * Copyright (C) 2016 Plain Macaron
  *
  * Mailinglistsubmitter is released under the GNU General Public License, Version 2 (or later).
  *
@@ -30,7 +30,7 @@
  *
  */
 
-; (function( $, window, document, undefined ) {
+; (function ( $, window, document, undefined ) {
     $.widget( "plainmacaron.mailinglistsubmitter", {
         defaultElement: "<div>",
         flag: false,
@@ -100,9 +100,9 @@
             noticeTextColor: "#283437",
             submitCallback: $.noop
         },
-        version: "1.0.0",
+        version: "1.0.1",
 
-        _create: function() {
+        _create: function () {
             var clearFix;
             var container;
             var element;
@@ -283,7 +283,7 @@
             });
         },
 
-        _destroy: function() {
+        _destroy: function () {
             var container;
             var element;
             var options;
@@ -312,7 +312,7 @@
                    .remove();
         },
 
-        _inputBlurEventHandler: function( event ) {
+        _inputBlurEventHandler: function ( event ) {
             var inputText;
             var options;
             var self;
@@ -348,7 +348,7 @@
             }
         },
 
-        _inputClickEventHandler: function( event ) {
+        _inputClickEventHandler: function ( event ) {
             var inputText;
             var options;
             var result;
@@ -371,7 +371,7 @@
                   .html( "" );
         },
 
-        _inputFocusEventHandler: function( event ) {
+        _inputFocusEventHandler: function ( event ) {
             var inputText;
             var options;
             var self;
@@ -390,7 +390,7 @@
             }
         },
 
-        _inputKeydownEventHandler: function( event ) {
+        _inputKeydownEventHandler: function ( event ) {
             if ( event.which === 9 ) {
                 var inputText;
                 var joinButton;
@@ -418,7 +418,7 @@
             }
         },
 
-        _joinButtonBlurEventHandler: function( event ) {
+        _joinButtonBlurEventHandler: function ( event ) {
             var inputText;
             var options;
             var self;
@@ -652,7 +652,7 @@
                              .find( "span" )
                              .css({
                                  cssFloat: ( value === 1 ? "left" : "none" ),
-                                 lineHeight: ( options.displayStyle === 1 && options.labelLineHeight !== null ? Math.max( inputText.outerHeight(), parseInt( $.trim( options.labelLineHeight ) ) ) + "px" : options.labelLineHeight )
+                                 lineHeight: ( value === 1 && options.labelLineHeight !== null ? Math.max( inputText.outerHeight( true ), parseInt( $.trim( options.labelLineHeight ) ) ) + "px" : options.labelLineHeight )
                              });
 
                     break;
@@ -935,6 +935,7 @@
                              .css({
                                  color: value
                              });
+
                     break;
                 case "joinButtonFontFamily":
                     container.find( "#" + options.formIdentifier )
