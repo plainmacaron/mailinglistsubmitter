@@ -14,7 +14,7 @@ This customizable jQuery plug-in allows a visitor to easily join a mailing list.
 
   - Join a mailing list by submitting an email address.
   - Create custom callback functions that can be used to handle ajax responses that occur from submitting an email address.
-  - Choose between two display styles.
+  - Choose between four display styles.
 
 Mailinglistsubmitter can be downloaded from the [plainmacaron site] and [GitHub].
 
@@ -22,7 +22,7 @@ Mailinglistsubmitter can be downloaded from the [plainmacaron site] and [GitHub]
 
 ### Version
 
-1.0.1
+1.1.0
 
 ---
 
