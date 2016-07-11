@@ -1,5 +1,5 @@
 /*!
- * jQuery Mailinglistsubmitter plug-in v1.0.1 - 2015-07-05T05:52Z
+ * jQuery Mailinglistsubmitter plug-in v1.1.0 - 2016-07-11T06:07Z
  * http://PlainMacaron.com/Controls/, http://PlainMacaron.com/Download/
  *
  * This customizable jQuery plug-in allows a visitor to easily join a mailing list.
@@ -100,13 +100,13 @@
             noticeTextColor: "#283437",
             submitCallback: $.noop
         },
-        version: "1.0.1",
+        version: "1.1.0",
 
         _create: function () {
             var clearFix;
             var container;
             var element;
-            var icon;
+            var imagePath;
             var joinButton;
             var labelText;
             var formLabel;
@@ -128,7 +128,7 @@
             container = $("<div />");
             mailingListForm = $("<fieldset />");
             mailingListInput = $("<input type='text' />");
-            formLabel = $("<label><span></span><img></img></label>");
+            formLabel = $("<label><span></span></label>");
             joinButton = $("<a />");
             privacyNotice = $("<div><small></small></div>");
             result = $("<div><p></p></div>");
@@ -175,21 +175,32 @@
                          fontSize: options.labelFontSize
                      });
 
-            labelText = formLabel.find( "span" )
-                                 .addClass( options.labelTextClass )
-                                 .css({
-                                     color: options.labelTextColor,
-                                     cssFloat: ( options.displayStyle === 1 ? "left" : "none" )
-                                 })
-                                 .text( options.labelText );
+            labelText = formLabel.find( "span" );
 
-            icon = formLabel.find( "img" )
-                            .attr( "src", options.imagePath )
-                            .attr( "alt", options.labelText )
-                            .addClass( options.imageClass )
-                            .css({
-                                height: options.imageHeight
-                            });
+            labelText.addClass( options.labelTextClass )
+                     .css({
+                         color: options.labelTextColor,
+                         cssFloat: ( options.displayStyle === 1 || options.displayStyle === 3 ? "left" : "none" )
+                     })
+                     .text( options.labelText );
+
+            imagePath = ( options.displayStyle === 3 || options.displayStyle === 4 ? null : options.imagePath );
+
+            if ( imagePath !== null ) {
+                var icon;
+
+                icon = $("<img />");
+
+                icon.attr( "src", options.imagePath )
+                    .attr( "alt", options.labelText )
+                    .addClass( options.imageClass )
+                    .css({
+                        height: options.imageHeight
+                    });
+
+                formLabel.first()
+                         .append( icon );
+            }
 
             if ( options.hasForm ) {
                 container.find( "fieldset" )
@@ -218,7 +229,7 @@
                             .insertAfter( formLabel );
 
             labelText.css({
-                         lineHeight: ( options.displayStyle === 1 && options.labelLineHeight !== null ? Math.max( mailingListInput.outerHeight( true ), parseInt( $.trim( options.labelLineHeight ) ) ) + "px" : options.labelLineHeight )
+                         lineHeight: ( ( options.displayStyle === 1 || options.displayStyle === 2 ) && options.labelLineHeight !== null ? Math.max( mailingListInput.outerHeight( true ), parseInt( $.trim( options.labelLineHeight ) ) ) + "px" : options.labelLineHeight )
                      });
 
             joinButton.text( options.joinButtonValue )
@@ -537,7 +548,7 @@
             var value;
 
             self = this;
-            options = this.options;
+            options = self.options;
 
             inputText = $("#" + options.inputIdentifier);
             joinButton = $("#" + options.joinButtonIdentifier);
@@ -603,6 +614,41 @@
             }
         },
 
+        _setImagePath: function ( path ) {
+            var container;
+            var element;
+            var icon;
+            var options;
+            var self;
+
+            self = this;
+            element = self.element;
+            options = self.options;
+
+            container = element.children( "#" + options.containerIdentifier );
+
+            icon = container.find( "#" + options.labelIdentifier )
+                            .find( "img" );
+
+            if ( path !== null ) {
+                if ( icon.length === 0 ) {
+                    icon = $("<img />");
+
+                    container.find( "#" + options.labelIdentifier )
+                             .append( icon );
+                }
+                        
+                icon.attr( "src", path )
+                    .attr( "alt", options.labelText )
+                    .addClass( options.imageClass )
+                    .css({
+                        height: options.imageHeight
+                    });      
+            } else {
+                icon.remove();                               
+            }
+        },
+
         _setOption: function ( key, value ) {
             var container;
             var element;
@@ -644,6 +690,7 @@
 
                     break;
                 case "displayStyle":
+                    var imagePath;
                     var inputText;
 
                     inputText = container.find( "#" + options.inputIdentifier );
@@ -651,9 +698,13 @@
                     container.find( "#" + options.labelIdentifier )
                              .find( "span" )
                              .css({
-                                 cssFloat: ( value === 1 ? "left" : "none" ),
-                                 lineHeight: ( value === 1 && options.labelLineHeight !== null ? Math.max( inputText.outerHeight( true ), parseInt( $.trim( options.labelLineHeight ) ) ) + "px" : options.labelLineHeight )
+                                 cssFloat: ( value === 1 || value === 3 ? "left" : "none" ),
+                                 lineHeight: ( ( value === 1 || value === 3 ) && options.labelLineHeight ? Math.max( inputText.outerHeight( true ), parseInt( $.trim( options.labelLineHeight ) ) ) + "px" : options.labelLineHeight )
                              });
+
+                    imagePath = ( value === 3 || value === 4 ? null : options.imagePath );
+
+                    self._setImagePath( imagePath );
 
                     break;
                 case "fieldsetClass":
@@ -771,9 +822,7 @@
 
                     break;
                 case "imagePath":
-                    container.find( "#" + options.labelIdentifier )
-                             .find( "img" )
-                             .attr( "src", value );
+                    self._setImagePath( value );
 
                     break;
                 case "imageWidth":

@@ -1,5 +1,37 @@
+/*!
+ * jQuery Mailinglistsubmitter plug-in v1.1.0 - 2016-07-11T06:07Z
+ * http://PlainMacaron.com/Controls/, http://PlainMacaron.com/Download/
+ *
+ * This customizable jQuery plug-in allows a visitor to easily join a mailing list.
+ * Copyright (C) 2016 Plain Macaron
+ *
+ * Mailinglistsubmitter is released under the GNU General Public License, Version 2 (or later).
+ *
+ * Mailinglistsubmitter is free software; you can redistribute it and/or modify it under the
+ * terms of the GNU General Public License as published by the Free Software Foundation;
+ * either version 2 of the License, or (at your option) any later version.
+ *
+ * Mailinglistsubmitter is distributed in the hope that it will be useful, but WITHOUT ANY
+ * WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+ * PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with this program;
+ * if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA  02110-1301, USA.
+ * http://PlainMacaron.com/Permission/
+ *
+ * Please, contact us if you have any questions or feedback about this plug-in.
+ * http://PlainMacaron.com/Contact/, support@plainmacaron.com
+ *
+ * This plug-in has the following dependencies: jQuery v1.5 or higher and jQuery UI v1.7 or 
+ * higher.
+ *
+ * This plug-in was developed by Ryan E. Anderson.
+ *
+ */
+
 /*
-      mailinglistsubmitter v1
+      mailinglistsubmitter v1_1
 
       by Ryan E. Anderson
 */
@@ -37,7 +69,7 @@
     width: 51px;
     height: 26px;
     padding: 1px 0 0;
-    margin: 0;    
+    margin: 0 6px 0 0;    
     float: left;
 }
 
@@ -48,7 +80,7 @@
     max-width: 260px;
     float: left;
     clear: right;
-    margin: 1px 6px;
+    margin: 1px 6px 1px 0;
     padding: 0 4px;
     border-width: 1px;
     border-style: solid;
