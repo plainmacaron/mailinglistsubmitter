@@ -26,39 +26,32 @@
         </script>
         <script type="text/javascript">
             $(document).ready(function() {
-                $("#first-display-link").click(function() {
-                    var link = $(this);
+                $("a#first-display-link, a#second-display-link, a#third-display-link, a#fourth-display-link").click(function() {
+                    var childLinks;
+                    var displayStyleValue;
+                    var displayValueString;
+                    var link;
+
+                    link = $(this);
+
+                    childLinks = link.siblings("a");
+         
+                    $.each(childLinks, function(index, value) {
+                        var nextLink;
+
+                        nextLink = $(this);
+
+                        if(nextLink.hasClass("current")) {
+                            nextLink.removeClass("current");
+                        }
+                    });
 
                     if(!link.hasClass("current")) {
                         link.addClass("current");
                     }
 
-                    if($("#second-display-link").hasClass("current")) {
-                        $("#second-display-link").removeClass("current");
-                    }
-
-                    var displayValueString = link.text();
-                    var displayStyleValue = parseInt(displayValueString.trim(), 10);
-
-                    $("#submitter").mailinglistsubmitter("option", "displayStyle", displayStyleValue);
-                });
-            });
-        </script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $("#second-display-link").click(function() {
-                    var link = $(this);
-
-                    if(!link.hasClass("current")) {
-                        link.addClass("current");
-                    }
-
-                    if($("#first-display-link").hasClass("current")) {
-                        $("#first-display-link").removeClass("current");
-                    }
-
-                    var displayValueString = link.text();
-                    var displayStyleValue = parseInt(displayValueString.trim(), 10);
+                    displayValueString = link.text();
+                    displayStyleValue = parseInt(displayValueString.trim(), 10);
 
                     $("#submitter").mailinglistsubmitter("option", "displayStyle", displayStyleValue);
                 });
@@ -72,18 +65,21 @@
             <header>
                 <h1>mailinglistsubmitter</h1>
                 <p>
-                    <small>Published: <time>2015-09-23</time></small>
+                    <small>Published: <time>2015-09-22</time></small>
+                </p>
+                <p>
+                    <small>Edited: <time>2016-07-11</time></small>
                 </p>
             </header>
             <p>
-                Try mailinglistsubmitter. Choose either display style <a id="first-display-link" href="#submitter">1</a> or display style 
-                <a id="second-display-link" class="current" href="#submitter">2</a>.
+                Try mailinglistsubmitter. Choose either display style <a id="first-display-link" href="#submitter">1</a>, <a id="second-display-link" class="current" href="#submitter">2</a>, 
+                <a id="third-display-link" href="#submitter">3</a>, or display style <a id="fourth-display-link" href="#submitter">4</a>.
             </p>
             <div id="submitter"></div>
             <footer>
                 <p id="fine-print">
                     <small>
-                        Copyright &copy; 2015 <a href="http://plainmacaron.com/">Plain Macaron</a>. All Rights Reserved.
+                        Copyright &copy; 2015&ndash;2016 <a href="http://plainmacaron.com/">Plain Macaron</a>. All Rights Reserved.
                     </small>
                 </p>
             </footer>
