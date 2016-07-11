@@ -6,3 +6,8 @@
 
 ### Fixed
 - Fix condition in block of code that mutates plug-in based on display style
+
+## v1.1.0 - 2016-07-11
+
+### Added
+- Add new display styles
